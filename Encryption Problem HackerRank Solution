@@ -1,0 +1,35 @@
+def encryption(s):
+    S = s.replace(" ","")
+    l = len(S)
+    row = math.floor(math.sqrt(l))
+    print(row)
+    col = math.ceil(math.sqrt(l))
+    print(col)
+    temprow,tempcol=row,col
+    if row*col<l:
+        while row*col<l:
+            temprow+=1
+            m1=temprow*col
+            tempcol+=1
+            m2=tempcol*row
+            if m1>=l:
+                row=temprow
+            elif m2>=l:
+                col=tempcol
+    print("row,col=",row,col)
+    S = S.ljust(row*col," ")
+    print(S)
+    es=[]
+    pas=0
+    for i in range(0,row):
+        print(pas)
+        es.append(S[pas:col+pas])
+        pas+=col
+        print(es)
+    ans=""
+    for i in range(col):
+        for j in range(row):
+            ans+=es[j][i]
+        ans=ans.rstrip()
+        ans+=" "
+    return ans
